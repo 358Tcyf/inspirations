@@ -8,13 +8,15 @@ public class TwentyFourPoints {
 
 
     public static void main(String[] args) throws IOException {
-        print = "";
         System.out.println("请输入4张牌");
-        System.out.println(calculation(createNum(), createNum(), createNum(), createNum()));
-        System.out.println("2+2组合执行" + times1 + "次");
-        System.out.println("3+1组合执行" + times2 + "次");
-        if (result == 24)
-            System.out.println("\n算出来了");
+        calculation(createNum(), createNum(), createNum(), createNum());
+        if (start == end)
+        {
+            System.out.println("步骤1："+process1);
+            System.out.println("步骤2："+process2);
+            System.out.println("步骤3："+process3);
+            System.out.println("算出来了");
+        }
         else
             System.out.println("算不出来");
     }
@@ -56,15 +58,15 @@ public class TwentyFourPoints {
     }
 
     private static int a1, a2, a3, a4, a5, a6, a7, a8, a9, a10;
-    private static String print;
-    private static double result;
-    private static int times1;
-    private static int times2;
+    private static String print = "";
+    private static double start = 0;
+    private static double end = 24;
+    private static String process1 = "";
+    private static String process2 = "";
+    private static String process3 = "";
 
-    private static String calculation(double var1, double var2, double var3, double var4) {
-        times1 = 0;
-        times2 = 0;
-        result = 0;
+    private static void calculation(double var1, double var2, double var3, double var4) {
+
         for (a1 = 1; a1 <= 2; a1++) {
             switch (a1) {
                 case 1:
@@ -72,55 +74,52 @@ public class TwentyFourPoints {
                         for (a3 = 1; a3 <= 4; a3++) {
                             for (a4 = 1; a4 <= 4; a4++) {
                                 for (a5 = 1; a5 <= 4; a5++) {
-                                    result = fourNumber1(var1, var2, var3, var4);
-                                    times1++;
-                                    if (result == 24) {
+                                    start = fourNumber1(var1, var2, var3, var4);
+                                    if (start == end) {
                                         break;
                                     } else {
                                         print = "";
                                     }
                                 }
-                                if (result == 24)
+                                if (start == end)
                                     break;
                             }
-                            if (result == 24)
+                            if (start == end)
                                 break;
                         }
-                        if (result == 24)
+                        if (start == end)
                             break;
                     }
-                    break;
+                    return;
                 case 2:
                     for (a6 = 1; a6 <= 4; a6++) {
                         for (a7 = 1; a7 <= 4; a7++) {
                             for (a8 = 1; a8 <= 3; a8++) {
                                 for (a9 = 1; a9 <= 4; a9++) {
                                     for (a10 = 1; a10 <= 4; a10++) {
-                                        result = fourNumber2(var1, var2, var3, var4);
-                                        times2++;
-                                        if (result == 24) {
+                                        start = fourNumber2(var1, var2, var3, var4);
+                                        if (start == end) {
                                             break;
                                         } else {
-                                            print = "";
+                                            print = process1 = process2 = process3 = "";
                                         }
                                     }
-                                    if (result == 24)
+                                    if (start == end)
                                         break;
                                 }
-                                if (result == 24)
+                                if (start == end)
                                     break;
                             }
-                            if (result == 24)
+                            if (start == end)
                                 break;
                         }
-                        if (result == 24)
+                        if (start == end)
                             break;
                     }
-                    break;
+                    return;
+                default:
             }
-
         }
-        return print;
     }
 
     private static double fourNumber1(double var1, double var2, double var3, double var4) {
@@ -202,6 +201,14 @@ public class TwentyFourPoints {
                 break;
         }
         print += (")");
+        if (process1.equals("")) {
+            process1 = print;
+        } else if (process2.equals("")) {
+            process2 = print;
+        } else if (process3.equals("")) {
+            process3 = print;
+        }
+        print = "";
         return sum;
     }
 }

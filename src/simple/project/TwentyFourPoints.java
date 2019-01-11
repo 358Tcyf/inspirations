@@ -10,14 +10,12 @@ public class TwentyFourPoints {
     public static void main(String[] args) throws IOException {
         System.out.println("请输入4张牌");
         calculation(createNum(), createNum(), createNum(), createNum());
-        if (start == end)
-        {
-            System.out.println("步骤1："+process1);
-            System.out.println("步骤2："+process2);
-            System.out.println("步骤3："+process3);
+        if (start == end) {
+            System.out.println("步骤1：" + process1);
+            System.out.println("步骤2：" + process2);
+            System.out.println("步骤3：" + process3 + "=" + end);
             System.out.println("算出来了");
-        }
-        else
+        } else
             System.out.println("算不出来");
     }
 
@@ -60,7 +58,7 @@ public class TwentyFourPoints {
     private static int a1, a2, a3, a4, a5, a6, a7, a8, a9, a10;
     private static String print = "";
     private static double start = 0;
-    private static double end = 24;
+    private static double end = 10;
     private static String process1 = "";
     private static String process2 = "";
     private static String process3 = "";
@@ -78,7 +76,7 @@ public class TwentyFourPoints {
                                     if (start == end) {
                                         break;
                                     } else {
-                                        print = "";
+                                        print = process1 = process2 = process3 = "";
                                     }
                                 }
                                 if (start == end)
@@ -207,6 +205,7 @@ public class TwentyFourPoints {
             process2 = print;
         } else if (process3.equals("")) {
             process3 = print;
+            System.out.println(var1 + " "+var2 + " "+aa);
         }
         print = "";
         return sum;
